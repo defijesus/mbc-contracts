@@ -5,8 +5,8 @@ import {ERC721} from "@solmate/tokens/ERC721.sol"; // Solmate: ERC721
 import {ERC20} from "@solmate/tokens/ERC20.sol"; // Solmate: ERC721
 import {MerkleProof} from "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
 import {Ownable} from "./lib/Ownable.sol"; // BoredGenius: Barebones Ownable
-import "@chainlink/VRFConsumerBaseV2.sol";
-import "@chainlink/interfaces/VRFCoordinatorV2Interface.sol";
+import {VRFConsumerBaseV2} from "@chainlink/VRFConsumerBaseV2.sol"; // Chainlink: VRF Consumer
+import {VRFCoordinatorV2Interface}  from "@chainlink/interfaces/VRFCoordinatorV2Interface.sol"; // Chainlink: VRF Coordinator
 
 contract MBC is ERC721, Ownable, VRFConsumerBaseV2 {
     /// constants
@@ -174,7 +174,7 @@ contract MBC is ERC721, Ownable, VRFConsumerBaseV2 {
         merkleRoot = _root;
     }
 
-    function requestRandomWords() external onlyOwner {
+    function requestRandomWord() external onlyOwner {
         // Will revert if subscription is not set and funded.
         COORDINATOR.requestRandomWords(
             keyHash,
